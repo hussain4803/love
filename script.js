@@ -156,7 +156,7 @@ function loadPictures() {
     const gallery = document.getElementById('picturesGallery');
     gallery.innerHTML = '<div class="loading">جاري التحميل...</div>';
     
-    fetch('/api/pictures')
+    fetch('https://backend-z01c.onrender.com/')
         .then(response => response.json())
         .then(pictures => {
             if (pictures.length === 0) {
@@ -310,7 +310,7 @@ function loadTodos() {
     const todosList = document.getElementById('todosList');
     todosList.innerHTML = '<div class="loading">جاري التحميل...</div>';
     
-    fetch('/api/todos')
+    fetch('https://backend-z01c.onrender.com/')
         .then(response => response.json())
         .then(todos => {
             if (todos.length === 0) {
@@ -464,7 +464,7 @@ function loadMusic() {
     const playlist = document.getElementById('musicPlaylist');
     playlist.innerHTML = '<div class="loading">جاري التحميل...</div>';
     
-    fetch('/api/music')
+    fetch('https://backend-z01c.onrender.com/')
         .then(response => response.json())
         .then(tracks => {
             if (tracks.length === 0) {
@@ -603,7 +603,7 @@ function loadMessages() {
     const messagesContainer = document.getElementById('messagesContainer');
     messagesContainer.innerHTML = '<div class="loading">جاري التحميل...</div>';
     
-    fetch('/api/messages')
+    fetch('https://backend-z01c.onrender.com/')
         .then(response => response.json())
         .then(messages => {
             if (messages.length === 0) {
@@ -731,3 +731,4 @@ function deleteMessage(id) {
         });
     }
 }
+
