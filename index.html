@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ذكريات الحب - موقعنا الرومانسي</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts">
+        <div class="heart">❤️</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💗</div>
+        <div class="heart">💓</div>
+        <div class="heart">💝</div>
+        <div class="heart">💞</div>
+        <div class="heart">💟</div>
+        <div class="heart">💌</div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="main-title">
+                <i class="fas fa-heart"></i>
+                ذكريات الحب
+                <i class="fas fa-heart"></i>
+            </h1>
+            <p class="subtitle">موقعنا الخاص لمشاركة الذكريات الجميلة</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <button class="nav-btn active" data-section="pictures">
+                <i class="fas fa-images"></i>
+                صورنا
+            </button>
+            <button class="nav-btn" data-section="todos">
+                <i class="fas fa-list-check"></i>
+                قائمة المهام
+            </button>
+            <button class="nav-btn" data-section="music">
+                <i class="fas fa-music"></i>
+                موسيقى
+            </button>
+            <button class="nav-btn" data-section="messages">
+                <i class="fas fa-envelope"></i>
+                رسائل حب
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Pictures Section -->
+            <section id="pictures" class="section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-images"></i> صورنا</h2>
+                    <button class="add-btn" onclick="showPictureForm()">
+                        <i class="fas fa-plus"></i>
+                        إضافة صورة أو فيديو
+                    </button>
+                </div>
+                
+                <div class="upload-form" id="pictureForm" style="display: none;">
+                    <form onsubmit="uploadPicture(event)">
+                        <div class="form-group">
+                            <label for="imageFile">اختر الصورة أو الفيديو:</label>
+                            <input type="file" id="imageFile" name="image" accept="image/*,video/*" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="imageDescription">وصف الصورة أو الفيديو:</label>
+                            <textarea id="imageDescription" name="description" placeholder="اكتب وصفاً للصورة أو الفيديو..." required></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-upload"></i>
+                                رفع الملف
+                            </button>
+                            <button type="button" class="cancel-btn" onclick="hidePictureForm()">
+                                <i class="fas fa-times"></i>
+                                إلغاء
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="gallery" id="picturesGallery">
+                    <!-- Pictures and videos will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Todos Section -->
+            <section id="todos" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-list-check"></i> قائمة المهام المستقبلية</h2>
+                    <button class="add-btn" onclick="showTodoForm()">
+                        <i class="fas fa-plus"></i>
+                        إضافة مهمة
+                    </button>
+                </div>
+
+                <div class="add-form" id="todoForm" style="display: none;">
+                    <form onsubmit="addTodo(event)">
+                        <div class="form-group">
+                            <label for="todoText">المهمة:</label>
+                            <input type="text" id="todoText" name="text" placeholder="اكتب مهمة تريد القيام بها معاً..." required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-plus"></i>
+                                إضافة
+                            </button>
+                            <button type="button" class="cancel-btn" onclick="hideTodoForm()">
+                                <i class="fas fa-times"></i>
+                                إلغاء
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="todos-list" id="todosList">
+                    <!-- Todos will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Music Section -->
+            <section id="music" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-music"></i> موسيقى</h2>
+                    <button class="add-btn" onclick="showMusicForm()">
+                        <i class="fas fa-plus"></i>
+                        إضافة مقطوعة
+                    </button>
+                </div>
+
+                <div class="upload-form" id="musicForm" style="display: none;">
+                    <form onsubmit="uploadMusic(event)">
+                        <div class="form-group">
+                            <label for="audioFile">اختر الملف الصوتي:</label>
+                            <input type="file" id="audioFile" name="audio" accept="audio/*" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="musicTitle">عنوان المقطوعة:</label>
+                            <input type="text" id="musicTitle" name="title" placeholder="اكتب عنوان المقطوعة..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="musicDescription">وصف المقطوعة:</label>
+                            <textarea id="musicDescription" name="description" placeholder="اكتب وصفاً للمقطوعة..."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-upload"></i>
+                                رفع المقطوعة
+                            </button>
+                            <button type="button" class="cancel-btn" onclick="hideMusicForm()">
+                                <i class="fas fa-times"></i>
+                                إلغاء
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="playlist" id="musicPlaylist">
+                    <!-- Music tracks will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Messages Section -->
+            <section id="messages" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-envelope"></i> رسائل حب</h2>
+                    <button class="add-btn" onclick="showMessageForm()">
+                        <i class="fas fa-plus"></i>
+                        كتابة رسالة
+                    </button>
+                </div>
+
+                <div class="add-form" id="messageForm" style="display: none;">
+                    <form onsubmit="addMessage(event)">
+                        <div class="form-group">
+                            <label for="messageAuthor">اسم الكاتب:</label>
+                            <input type="text" id="messageAuthor" name="author" placeholder="اكتب اسمك..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="messageText">الرسالة:</label>
+                            <textarea id="messageText" name="text" placeholder="اكتب رسالة حب..." required></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i>
+                                إرسال
+                            </button>
+                            <button type="button" class="cancel-btn" onclick="hideMessageForm()">
+                                <i class="fas fa-times"></i>
+                                إلغاء
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="messages-container" id="messagesContainer">
+                    <!-- Messages will be loaded here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>صنع بحب ❤️ لموقع ذكرياتنا</p>
+        </footer>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h3 id="modalTitle">تعديل</h3>
+            <form id="editForm">
+                <div class="form-group">
+                    <label id="editLabel">النص:</label>
+                    <textarea id="editText" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-save"></i>
+                        حفظ
+                    </button>
+                    <button type="button" class="cancel-btn" onclick="closeEditModal()">
+                        <i class="fas fa-times"></i>
+                        إلغاء
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
